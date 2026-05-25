@@ -1,0 +1,10 @@
+tools/
+reports/*.pdf
+reports/*.png
+reports/rendered_report/
+reports/project_report.md
+reports/FINAL_*
+reports/Metin_Batin_Dincer_Kitap_Satis_Sitesi_Raporu.*
+*.tmp
+Thumbs.db
+.DS_Store
