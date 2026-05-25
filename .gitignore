@@ -1,5 +1,6 @@
 tools/
 reports/*.pdf
+!reports/Metin_Batin_Dincer_221307021_Kitap_Satis_Sitesi_Proje_Raporu.pdf
 reports/*.png
 reports/rendered_report/
 reports/project_report.md
