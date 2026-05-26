@@ -7,5 +7,6 @@ reports/project_report.md
 reports/FINAL_*
 reports/Metin_Batin_Dincer_Kitap_Satis_Sitesi_Raporu.*
 *.tmp
+.~lock.*
 Thumbs.db
 .DS_Store
