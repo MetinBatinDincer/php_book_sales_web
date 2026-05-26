@@ -1,35 +1,55 @@
-# Metin Kitap - PHP Kitap Satış Sitesi
+# Metin Kitap - Laravel Kitap Satis Sitesi
 
-Öğrenci: Metin Batın Dincer  
-Ders: TBL304 Web Programlama  
-Proje konusu: İçerik yönetim sistemine sahip kitap satış sitesi
-
+Ogrenci: Metin Batin Dincer  
+Ders: Web Programlama  
+Framework: Laravel 11  
+Proje konusu: Icerik yonetim sistemine sahip kitap satis sitesi
 GitHub: https://github.com/MetinBatinDincer/php_book_sales_web
 
-## Özellikler
+## Ozellikler
 
-- Admin ve kullanıcı rolleri
-- Kullanıcı kayıt, giriş, profil güncelleme, şifre değiştirme ve üyelik pasife alma
-- Admin ürün ekleme, güncelleme, silme, satışa açma/kapatma, fotoğraf yükleme, stok takibi
-- Ürün listeleme, detay sayfası, sepet, toplam tutar ve ödeme ekranı
-- Sipariş oluşturma, admin sipariş onayı ve hazırlık süreci ilerletme
-- Kullanıcı sipariş takibi ve teslim alma onayı
-- Admin onaylamadan önce sipariş iptali ve tutarın site bakiyesine iadesi
-- Sonraki alışverişte önce kullanıcı bakiyesinden harcama
-- Bootstrap ile responsive arayüz
-- MySQL veritabanı yedeği ve örnek veri
+- Laravel MVC yapisi: route, controller, model, migration, seeder ve Blade view kullanimi
+- Admin ve user rolleri
+- Kullanici kayit, giris, profil guncelleme, sifre degistirme ve uyeligi pasife alma
+- Admin urun ekleme, guncelleme, silme, satisa acma/kapatma, fotograf yukleme ve stok takibi
+- Urun listeleme, urun detay sayfasi, sepet, toplam tutar ve odeme ekrani
+- Siparis olusturma, admin siparis onayi ve hazirlik sureci ilerletme
+- Kullanici siparis takibi ve teslim alma onayi
+- Admin onaylamadan once siparis iptali ve tutarin site bakiyesine iadesi
+- Sonraki alisveriste once kullanici bakiyesinden harcama
+- Bootstrap 5 ile responsive arayuz
+- Migration, seeder, SQLite test veritabani ve MySQL SQL yedegi
 
 ## Kurulum
 
-1. XAMPP/WAMP gibi PHP + MySQL ortamını çalıştırın.
-2. Bu klasörü web kök dizininize `book_sales` adıyla koyun.
-3. `database/book_sales.sql` dosyasını phpMyAdmin veya MySQL komut satırı ile içe aktarın.
-4. Veritabanı bilgileriniz farklıysa `app/config.php` dosyasındaki `DB_USER` ve `DB_PASS` alanlarını güncelleyin.
-5. Tarayıcıdan `http://localhost/book_sales/public/index.php` adresine gidin.
+1. PHP 8.2+ ve Composer hazir olmalidir. Bu bilgisayarda XAMPP PHP yolu: `C:\xampp\php\php.exe`.
+2. Bagimliliklar eksikse:
+
+```powershell
+composer install
+```
+
+3. `.env` dosyasi yoksa `.env.example` dosyasindan olusturun ve anahtar uretin:
+
+```powershell
+C:\xampp\php\php.exe artisan key:generate
+```
+
+4. SQLite ile hizli kurulum icin:
+
+```powershell
+New-Item -ItemType File database\database.sqlite -Force
+C:\xampp\php\php.exe artisan migrate:fresh --seed
+C:\xampp\php\php.exe artisan serve --host=127.0.0.1 --port=8000
+```
+
+5. Tarayicidan `http://127.0.0.1:8000` adresini acin.
+
+MySQL kullanilacaksa `.env` icindeki `DB_CONNECTION`, `DB_DATABASE`, `DB_USERNAME` ve `DB_PASSWORD` alanlari MySQL bilgilerine gore duzenlenebilir. SQL yedegi `database/book_sales.sql` dosyasindadir.
 
 ## Demo Hesaplar
 
-Tüm demo hesapların şifresi: `password`
+Tum demo hesaplarin sifresi: `password`
 
 - Admin: `admin@metinkitap.test`
 - User: `ayse@test.com`
@@ -38,14 +58,22 @@ Tüm demo hesapların şifresi: `password`
 - User: `can@test.com`
 - User: `zeynep@test.com`
 
-## Klasör Yapısı
+## Test
 
-- `public/index.php`: Front controller ve rota yönetimi
-- `app/models`: User, Product ve Order veritabanı işlemleri
-- `app/views`: Kullanıcı ve admin arayüzleri
-- `database/book_sales.sql`: Veritabanı yedeği ve örnek veriler
-- `reports/Metin_Batin_Dincer_221307021_Kitap_Satis_Sitesi_Proje_Raporu.docx`: Proje raporu
+```powershell
+C:\xampp\php\php.exe artisan test
+```
 
-## Not
+Son dogrulamada 6 test ve 24 assertion basariyla gecmistir.
 
-Bu çalışma saf PHP ile MVC mantığında düzenlenmiştir. Klasör yapısında `models` veriyi, `views` arayüzü, `public/index.php` ise controller/route akışlarını yönetir.
+## Klasor Yapisi
+
+- `routes/web.php`: Web route tanimlari
+- `app/Http/Controllers`: Kullanici, sepet, siparis ve admin controller siniflari
+- `app/Models`: User, Product, Order ve OrderItem modelleri
+- `resources/views`: Blade arayuz dosyalari
+- `database/migrations`: Laravel migration dosyalari
+- `database/seeders/DatabaseSeeder.php`: 1 admin, 5 user ve 20 urun demo verisi
+- `database/book_sales.sql`: MySQL uyumlu veritabani yedegi
+
+Eski saf PHP MVC surumu `legacy_php_mvc` klasorunde sadece arsiv amaciyla saklanmistir. Calisan ana proje Laravel kok yapisidir.
